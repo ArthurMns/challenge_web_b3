@@ -1,10 +1,9 @@
 <template>
   <div>
     <AppNavbar />
-  </div>
-  <div>
     <slot />
   </div>
+
   <div>
     <AppFooter />
   </div>
