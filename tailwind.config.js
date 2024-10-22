@@ -12,4 +12,12 @@ export default {
 		extend: {},
 	},
 	plugins: [],
+	
+};
+
+module.exports = {
+
+	plugins: [
+	  require('@tailwindcss/forms'),
+	],
 };
