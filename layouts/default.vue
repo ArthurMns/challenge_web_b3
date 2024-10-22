@@ -1,9 +1,8 @@
 <template>
-  <div>
+  <div class="bg-white">
     <AppNavbar />
     <slot />
   </div>
-
   <div>
     <AppFooter />
   </div>
