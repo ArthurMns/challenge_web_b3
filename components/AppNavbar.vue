@@ -1,15 +1,15 @@
 <template>
-  <header class="bg-white">
+  <header class="bg-white w-full">
     <nav
-      class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+      class="flex max-w-full items-center justify-between p-6 lg:px-8 border-b shadow-md"
       aria-label="Global"
     >
       <div class="flex lg:flex-1">
         <nuxt-link to="/" class="-m-1.5 p-1.5">
           <span class="sr-only">Amis à poils</span>
           <img
-            class="h-8 w-auto"
-            src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+            class="h-12 w-auto"
+            src="../public/file.png"
             alt="Amis à poils"
           />
         </nuxt-link>
@@ -105,12 +105,8 @@ import { ref } from "vue";
 import {
   Dialog,
   DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
 } from "@headlessui/vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
-import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 
 const mobileMenuOpen = ref(false);
 </script>
