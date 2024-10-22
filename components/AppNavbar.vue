@@ -15,17 +15,17 @@
         </nuxt-link>
       </div>
 
-      <div class="flex lg:hidden"></div>
-
-      <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900">
-        Accueil
-      </nuxt-link>
-      <nuxt-link to="/marketplace" class="text-sm font-semibold leading-6 text-gray-900">
-        Marketplace
-      </nuxt-link>
-      <nuxt-link to="/company" class="text-sm font-semibold leading-6 text-gray-900">
-        Company
-      </nuxt-link>
+      <div class="flex space-x-6">
+        <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900">
+          Accueil
+        </nuxt-link>
+        <nuxt-link to="/annonces" class="text-sm font-semibold leading-6 text-gray-900">
+          Annonces
+        </nuxt-link>
+        <nuxt-link to="/contacts" class="text-sm font-semibold leading-6 text-gray-900">
+          Contacts
+        </nuxt-link>
+      </div>
 
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <nuxt-link to="/login" class="text-sm font-semibold leading-6 text-gray-900">
