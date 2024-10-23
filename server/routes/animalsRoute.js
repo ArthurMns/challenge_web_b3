@@ -1,5 +1,6 @@
-import express from "express";
-const animalsController = require("../controllers/animalsController");
+const express = require("express");
+
+const animalsController = require("../controllers/animalsController.js");
 
 const router = express.Router();
 

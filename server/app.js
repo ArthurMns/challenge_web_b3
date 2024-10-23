@@ -1,9 +1,9 @@
-import express from "express";
+const express = require("express");
 
-const usersRoute = require("./routes/usersRoute");
-const animalsRoute = require("./routes/animalsRoute");
-const cartsRoute = require("./routes/cartsRoute");
-const cartsItemsRoute = require("./routes/cartsItemsRoute");
+const usersRoute = require("./routes/usersRoute.js");
+const animalsRoute = require("./routes/animalsRoute.js");
+const cartsRoute = require("./routes/cartsRoute.js");
+const cartsItemsRoute = require("./routes/cartsItemsRoute.js");
 
 const app = express();
 const PORT = 3001;

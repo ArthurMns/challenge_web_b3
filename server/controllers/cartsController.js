@@ -1,4 +1,4 @@
-const prisma = require("../db/prisma");
+const prisma = require("../db/prisma.js");
 
 const getAllCarts = async (req, res) => {
 	try {
@@ -53,9 +53,4 @@ const deleteCart = async (req, res) => {
 	}
 };
 
-module.exports = {
-	getAllCarts,
-	getCartById,
-	createCart,
-	deleteCart,
-};
+module.exports = { getAllCarts, getCartById, createCart, deleteCart };

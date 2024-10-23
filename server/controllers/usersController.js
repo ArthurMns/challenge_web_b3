@@ -1,6 +1,6 @@
-const prisma = require("../db/prisma");
+const prisma = require("../db/prisma.js");
 
-import bcrypt from "bcrypt";
+const bcrypt = require("bcrypt");
 
 const hashPassword = async (password) => {
 	return await bcrypt.hash(password, 10);
@@ -8,7 +8,10 @@ const hashPassword = async (password) => {
 
 const getAllUsers = async (req, res) => {
 	try {
+		console.log("GET /api/v1/users");
 		const users = await prisma.users.findMany();
+		console.log(users);
+
 		res.json(users);
 	} catch (error) {
 		res.status(500).json({ error: error.message });
