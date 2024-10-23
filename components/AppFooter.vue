@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gray-800 text-white py-8 h-30">
+  <footer class="bg-grey-800 text-white py-8 h-30 shadow-2xl">
     <div class="container mx-auto flex flex-wrap justify-between">
       <div class="w-full md:w-1/3 mb-6 md:mb-0">
         <h2 class="text-lg font-semibold mb-2">Marketplace Animaux</h2>
@@ -10,12 +10,26 @@
       </div>
 
       <div class="w-full md:w-1/3 mb-6 md:mb-0">
-        <h3 class="text-lg font-semibold mb-2">Liens utiles</h3>
+        <h3 class="text-lg font-semibold mb-2 text-amber-700">Liens utiles</h3>
         <ul class="text-sm">
-          <li><a href="#" class="hover:underline">Accueil</a></li>
-          <li><a href="#" class="hover:underline">À propos</a></li>
-          <li><a href="#" class="hover:underline">Contact</a></li>
-          <li><a href="#" class="hover:underline">Termes et conditions</a></li>
+          <li class="text-amber-600">
+            <a href="#" class="text-amber-600 hover:border-amber-500"
+              >Accueil</a
+            >
+          </li>
+          <li class="">
+            <a href="#" class="text-amber-600 hover:b-amber-500">À propos</a>
+          </li>
+          <li class="text-amber-600 hover:border-amber-500">
+            <a href="#" class="text-amber-600 hover:border-amber-500"
+              >Contact</a
+            >
+          </li>
+          <li class="text-amber-600 hover:border-amber-500">
+            <a href="#" class="text-amber-600 hover:border-amber-500"
+              >Termes et conditions</a
+            >
+          </li>
         </ul>
       </div>
 
