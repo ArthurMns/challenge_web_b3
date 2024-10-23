@@ -8,7 +8,6 @@ const cartsRoute = require("./routes/cartsRoute.js");
 const cartsItemsRoute = require("./routes/cartsItemsRoute.js");
 
 const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
 
 // dotenv.config();
 
@@ -36,7 +35,7 @@ app.use("/api/v1/carts", cartsRoute);
 app.use("/api/v1/cartsItems", cartsItemsRoute);
 
 app.listen(PORT, async () => {
-	console.log(
-		`Serveur running, triple moooooonstre on http://localhost:${PORT}`
-	);
+  console.log(
+    `Serveur running, triple moooooonstre on http://localhost:${PORT}`,
+  );
 });

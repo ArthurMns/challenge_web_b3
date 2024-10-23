@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <div>
     <h2 class="text-center text-2xl text-orange-700 font-bold mt-6 pt-5">
@@ -16,7 +18,11 @@
     >
       <figure>
         <img src="assets/photos/cat.png" alt="animal" />
+        <img src="assets/photos/cat.png" alt="animal" />
       </figure>
+      <div class="card-body text-slate-700">
+        <h2 class="card-title">{{ animal.name }}</h2>
+        <p>{{ animal.description }}</p>
       <div class="card-body text-slate-700">
         <h2 class="card-title">{{ animal.name }}</h2>
         <p>{{ animal.description }}</p>
