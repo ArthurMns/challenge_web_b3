@@ -15,7 +15,7 @@
         <h3 class="text-lg font-semibold mb-2 text-amber-700">Liens utiles</h3>
         <ul class="text-sm">
           <li>
-            <a href="#">Accueil</a>
+            <nuxt-link to="/">Accueil</nuxt-link>
           </li>
           <li>
             <a href="#" class="">À propos</a>
