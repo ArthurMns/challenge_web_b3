@@ -9,12 +9,24 @@
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm shadow-lg p-6 bg-white rounded-md">
       <form class="space-y-6" action="#" method="POST">
+
+        <div>
+          <label for="Email" class="block text-sm font-medium leading-6 text-gray-900">
+            Email
+          </label>
+          <div class="mt-2">
+            <input v-model="email" id="Email" name="Email" type="text" required
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+                placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6" />
+          </div>
+        </div>
+
         <div>
           <label for="new-password" class="block text-sm font-medium leading-6 text-gray-900">
             Nouveau mot de passe
           </label>
           <div class="mt-2">
-            <input id="new-password" name="new-password" type="password" required
+            <input v-model="password" id="new-password" name="new-password" type="password" required
               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
                 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6" />
           </div>
@@ -25,7 +37,7 @@
             Confirmer votre mot de passe
           </label>
           <div class="mt-2">
-            <input id="confirm-password" name="confirm-password" type="password" required
+            <input v-model="confirmPassword" id="confirm-password" name="confirm-password" type="password" required
               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
                 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6" />
           </div>
@@ -45,6 +57,14 @@
 
 <script>
 export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      error: null
+    };
+  },
   mounted() {
     // Vérifier si l'utilisateur est déjà authentifié via sessionStorage
     const isAuthenticated = sessionStorage.getItem('isAuthenticated');

@@ -13,10 +13,12 @@
         <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300 px-2.5 py-1">
           Accueil
         </nuxt-link>
-        <nuxt-link to="/annonces" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300 px-2.5 py-1">
+        <nuxt-link to="/annonces"
+          class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300 px-2.5 py-1">
           Annonces
         </nuxt-link>
-        <nuxt-link to="/createAnnonce" class="text-sm font-semibold leading-6 text-orange-600 border-2 border-orange-600 px-2.5 py-1 rounded hover:bg-orange-600 hover:text-white hover:border-transparent transition-colors">
+        <nuxt-link to="/createAnnonce"
+          class="text-sm font-semibold leading-6 text-orange-600 border-2 border-orange-600 px-2.5 py-1 rounded hover:bg-orange-600 hover:text-white hover:border-transparent transition-colors">
           Créer mon annonce
         </nuxt-link>
 
@@ -50,14 +52,16 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <nuxt-link to="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+              <nuxt-link to="/"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                 Accueil
               </nuxt-link>
               <nuxt-link to="/annonces"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                 Annonces
               </nuxt-link>
-              <nuxt-link to="/createAnnonce" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+              <nuxt-link to="/createAnnonce"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                 Créer mon annonce
               </nuxt-link>
             </div>
@@ -77,7 +81,7 @@
 
 <script>
 import { ref } from "vue";
-import { Dialog, DialogPanel } from "@headlessui/vue"; 
+import { Dialog, DialogPanel } from "@headlessui/vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
 
 export default {
@@ -86,7 +90,7 @@ export default {
       isAuthenticated: false,  // Variable qui va suivre l'état d'authentification
     };
   },
-  mounted() {
+  computed() {
     // Vérifier l'état d'authentification à partir du sessionStorage
     const isAuthenticated = sessionStorage.getItem('isAuthenticated');
     this.isAuthenticated = isAuthenticated === 'true'; // Si 'true', l'utilisateur est authentifié
