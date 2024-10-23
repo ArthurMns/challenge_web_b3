@@ -8,19 +8,16 @@
         </nuxt-link>
       </div>
 
-      <div class="flex space-x-6">
-        <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end flex space-x-6">
+        <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300 px-2.5 py-1">
           Accueil
         </nuxt-link>
-        <nuxt-link to="/annonces" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
+        <nuxt-link to="/annonces" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300 px-2.5 py-1">
           Annonces
         </nuxt-link>
-        <nuxt-link to="/contacts" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
-          Contacts
+        <nuxt-link to="/createAnnonce" class="text-sm font-semibold leading-6 text-orange-600 border-2 border-orange-600 px-2.5 py-1 rounded hover:bg-orange-600 hover:text-white hover:border-transparent transition-colors">
+          Créer mon annonce
         </nuxt-link>
-      </div>
-
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <nuxt-link
           to="/login"
           class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors"
@@ -36,7 +33,7 @@
         <div class="flex items-center justify-between">
           <nuxt-link to="/" class="-m-1.5 p-1.5">
             <span class="sr-only">Amis à poils</span>
-            <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Amis à poils" />
+            <img class="h-8 w-auto" src="../public/file.png" alt="Amis à poils" />
           </nuxt-link>
           <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = false">
             <span class="sr-only">Close menu</span>
@@ -47,14 +44,14 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <nuxt-link to="/features" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                Features
+              <nuxt-link to="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                Accueil
               </nuxt-link>
               <nuxt-link to="/annonces" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                 Annonces
               </nuxt-link>
-              <nuxt-link to="/company" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                Company
+              <nuxt-link to="/createAnnonce" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                Créer mon annonce
               </nuxt-link>
             </div>
 
