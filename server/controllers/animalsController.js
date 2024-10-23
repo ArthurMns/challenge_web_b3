@@ -24,28 +24,28 @@ const getAnimalById = async (req, res) => {
 };
 
 const createAnimal = async (req, res) => {
-  const { name, user_id, category_id, age, description, breed, price } =
-    req.body;
-  try {
-    const newAnimal = await prisma.animals.create({
-      data: {
-        name,
-        user: {
-          connect: { id: user_id },
-        },
-        category: {
-          connect: { id: category_id },
-        },
-        age,
-        description,
-        breed,
-        price,
-      },
-    });
-    res.json(newAnimal);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+	const { name, user_id, category_id, age, description, breed, price } =
+		req.body;
+	try {
+		const newAnimal = await prisma.animals.create({
+			data: {
+                name,
+                user: {
+                    connect: { id: user_id },
+                },
+                category: {
+                    connect: { id: category_id },
+                },
+                age,
+                description,
+                breed,
+                price,
+			},
+		});
+		res.json(newAnimal);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
 };
 
 const updateAnimal = async (req, res) => {
