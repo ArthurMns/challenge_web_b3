@@ -33,12 +33,14 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-	const { name, email, phone_number, city, password } = req.body;
+	const { firstName, lastName, email, phone_number, city } = req.body;
+	let {password} = req.body;
 	try {
 		password = await hashPassword(password);
 		const newUser = await prisma.users.create({
 			data: {
-				name,
+				firstName,
+				lastName,
 				email,
 				phone_number,
 				city,
