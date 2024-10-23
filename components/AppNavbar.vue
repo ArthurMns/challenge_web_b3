@@ -9,6 +9,7 @@
       </div>
 
       <div class="hidden lg:flex lg:flex-1 lg:justify-end flex space-x-6">
+
         <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300 px-2.5 py-1">
           Accueil
         </nuxt-link>
@@ -18,9 +19,7 @@
         <nuxt-link to="/createAnnonce" class="text-sm font-semibold leading-6 text-orange-600 border-2 border-orange-600 px-2.5 py-1 rounded hover:bg-orange-600 hover:text-white hover:border-transparent transition-colors">
           Créer mon annonce
         </nuxt-link>
-      </div>
 
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <nuxt-link v-if="isAuthenticated" to="/profil"
           class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
           Profil
