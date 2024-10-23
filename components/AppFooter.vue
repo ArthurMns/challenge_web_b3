@@ -1,13 +1,13 @@
 <template>
-  <footer class="bg-grey-800 text-white py-8 h-30 shadow-2xl">
+  <footer class="bg-grey-800 text-white py-8 h-30 shadow-2xl pt-10">
     <div class="container mx-auto flex flex-wrap justify-between">
       <div class="w-full md:w-1/3 mb-6 md:mb-0">
         <h2 class="text-lg font-semibold mb-2 text-amber-700">
           Marketplace Animaux
         </h2>
         <p>
-          Votre destination de confiance pour acheter et vendre des animaux en
-          toute sécurité.
+          Votre partenaire de confiance pour accueillir ou trouver un foyer
+          aimant à vos animaux, en toute sérénité.
         </p>
       </div>
 
@@ -15,13 +15,13 @@
         <h3 class="text-lg font-semibold mb-2 text-amber-700">Liens utiles</h3>
         <ul class="text-sm">
           <li>
-            <a href="#">Accueil</a>
+            <nuxt-link to="/">Accueil</nuxt-link>
           </li>
           <li>
-            <a href="#" class="">À propos</a>
+            <nuxt-link to="/about">À propos</nuxt-link>
           </li>
           <li>
-            <a href="#">Contact</a>
+            <nuxt-link to="#">Contact</nuxt-link>
           </li>
           <li>
             <nuxt-link to="/conditions">Termes et conditions</nuxt-link>
@@ -51,9 +51,9 @@
       </div>
     </div>
 
-    <!-- Section : Copyright -->
     <div class="mt-8 text-center text-sm">
       &copy; 2024 Amis à poils. Tous droits réservés.
     </div>
   </footer>
 </template>
+<script setup lang="ts"></script>

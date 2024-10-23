@@ -156,6 +156,7 @@
       </p>
     </section>
   </div>
+  <br />
 </template>
 
 <script>
@@ -163,7 +164,3 @@ export default {
   name: "Conditions",
 };
 </script>
-
-<style scoped>
-/* Pas de styles custom ici, tout est géré par Tailwind */
-</style>
