@@ -2,8 +2,10 @@
   <footer class="bg-grey-800 text-white py-8 h-30 shadow-2xl">
     <div class="container mx-auto flex flex-wrap justify-between">
       <div class="w-full md:w-1/3 mb-6 md:mb-0">
-        <h2 class="text-lg font-semibold mb-2">Marketplace Animaux</h2>
-        <p class="text-sm">
+        <h2 class="text-lg font-semibold mb-2 text-amber-700">
+          Marketplace Animaux
+        </h2>
+        <p>
           Votre destination de confiance pour acheter et vendre des animaux en
           toute sécurité.
         </p>
@@ -12,29 +14,23 @@
       <div class="w-full md:w-1/3 mb-6 md:mb-0">
         <h3 class="text-lg font-semibold mb-2 text-amber-700">Liens utiles</h3>
         <ul class="text-sm">
-          <li class="text-amber-600">
-            <a href="#" class="text-amber-600 hover:border-amber-500"
-              >Accueil</a
-            >
+          <li>
+            <a href="#">Accueil</a>
           </li>
-          <li class="">
-            <a href="#" class="text-amber-600 hover:b-amber-500">À propos</a>
+          <li>
+            <a href="#" class="">À propos</a>
           </li>
-          <li class="text-amber-600 hover:border-amber-500">
-            <a href="#" class="text-amber-600 hover:border-amber-500"
-              >Contact</a
-            >
+          <li>
+            <a href="#">Contact</a>
           </li>
-          <li class="text-amber-600 hover:border-amber-500">
-            <a href="#" class="text-amber-600 hover:border-amber-500"
-              >Termes et conditions</a
-            >
+          <li>
+            <nuxt-link to="/conditions">Termes et conditions</nuxt-link>
           </li>
         </ul>
       </div>
 
       <div class="w-full md:w-1/3">
-        <h3 class="text-lg font-semibold mb-2">Suivez-nous</h3>
+        <h3 class="text-lg font-semibold mb-2 text-amber-700">Suivez-nous</h3>
         <div class="flex space-x-4">
           <a href="#" class="text-blue-500 hover:text-white">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -57,7 +53,7 @@
 
     <!-- Section : Copyright -->
     <div class="mt-8 text-center text-sm">
-      &copy; 2024 Marketplace Animaux. Tous droits réservés.
+      &copy; 2024 Amis à poils. Tous droits réservés.
     </div>
   </footer>
 </template>

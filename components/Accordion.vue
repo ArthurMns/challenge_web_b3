@@ -11,7 +11,7 @@ const goToSlide = (slideNumber: number) => {
 <template>
   <div class="flex justify-center">
     <div
-      class="carousel h-96 w-[1200px] overflow-hidden relative bg-white rounded"
+      class="carousel h-96 w-3/4 overflow-hidden relative bg-white rounded-lg"
     >
       <div
         v-show="currentSlide === 1"
