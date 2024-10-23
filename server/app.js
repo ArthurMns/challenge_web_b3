@@ -32,9 +32,6 @@ app.use("/api/v1/carts", cartsRoute);
 app.use("/api/v1/cartsItems", cartsItemsRoute);
 
 app.listen(PORT, async () => {
-	const users = await prisma.users.findMany();
-	console.log(users);
-
 	console.log(
 		`Serveur running, triple moooooonstre on http://localhost:${PORT}`
 	);
