@@ -18,14 +18,14 @@ app.use(express.json());
 
 app.use(
     cors({
-        origin: "*", // Permettre toutes les origines, à restreindre pour des raisons de sécurité
-        methods: ["GET", "POST", "DELETE", "OPTIONS"], // Méthodes permises
+        origin: "*",
+        methods: ["GET", "POST", "DELETE", "OPTIONS"],
         allowedHeaders: [
             "Origin",
             "X-Requested-With",
             "Content-Type",
             "Accept",
-        ], // En-têtes autorisés
+        ],
     })
 );
 
