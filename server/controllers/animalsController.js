@@ -1,4 +1,4 @@
-const prisma = require("../db/prisma");
+const prisma = require("../db/prisma.js");
 
 const getAllAnimals = async (req, res) => {
 	try {

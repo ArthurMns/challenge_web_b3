@@ -1,7 +1,6 @@
 {
   "name": "nuxt-app",
   "private": true,
-  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -10,19 +9,19 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-
     "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.1.5",
-
-    "@prisma/client": "^5.21.1",
+    "@prisma/nuxt": "^0.0.35",
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
-
     "nuxt": "^3.13.2",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@prisma/client": "^5.21.1",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.13",
     "postcss": "^8.4.47",
