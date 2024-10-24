@@ -92,13 +92,14 @@ const adoptAnimal = async () => {
 
 // Charger les détails de l'animal lorsque la page est montée
 onMounted(() => {
-  fetchAnimalDetails(animalId);
+  const id = Array.isArray(animalId) ? animalId[0] : animalId; // Assure que c'est une string
+  fetchAnimalDetails(id);
 });
 </script>
 
 <template>
   <section v-if="animal" class="pt-8 mb-14 max-h-screen">
-    <!-- Contenu des détails de l'animal -->
+    <!-- Bouton "Go Back" repositionné au-dessus du contenu principal -->
 
     <div
       class="container mx-auto flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-6"
