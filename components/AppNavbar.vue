@@ -84,27 +84,33 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';  // Importer ref et onMounted pour la gestion des états réactifs
+
 export default {
   setup() {
-    const mobileMenuOpen = ref(false); // Utilisez ref pour le menu mobile
+    const mobileMenuOpen = ref(false);  // Utilisez ref pour le menu mobile
+    const isAuthenticated = ref(false);  // Utilisez ref pour l'état d'authentification
+    const showMenu = ref(false);  // Utilisez ref pour l'affichage du menu déroulant
+
+    // Vérifier l'état d'authentification à partir du sessionStorage
+    onMounted(() => {
+      const authStatus = sessionStorage.getItem('isAuthenticated');
+      isAuthenticated.value = authStatus === 'true';  // Conversion en booléen
+    });
+
+    // Fonction de déconnexion
+    const handleLogout = () => {
+      sessionStorage.removeItem('isAuthenticated');
+      isAuthenticated.value = false;  // Mettre à jour l'état
+      window.location.href = '/login';  // Rediriger vers la page de login
+    };
 
     return {
-      isAuthenticated: false,  // Variable pour l'état d'authentification
-      showMenu: false  // Variable pour gérer l'affichage du menu déroulant
+      mobileMenuOpen,
+      isAuthenticated,
+      showMenu,
+      handleLogout,
     };
-  },
-  mounted() {
-    // Vérifier l'état d'authentification à partir du sessionStorage et convertir en booléen
-    const isAuthenticated = sessionStorage.getItem('isAuthenticated');
-    this.isAuthenticated = isAuthenticated === 'true';  // Conversion en booléen
-  },
-  methods: {
-    handleLogout() {
-      // Déconnexion de l'utilisateur
-      sessionStorage.removeItem('isAuthenticated');
-      this.isAuthenticated = false;
-      this.$router.push('/login');  // Rediriger vers la page de login
-    }
   }
 };
 </script>
