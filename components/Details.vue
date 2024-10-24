@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 
 // Interface pour typer l'animal
@@ -9,7 +9,7 @@ interface Animal {
   description: string;
   age: number | null;
   breed: string | null;
-  category_id: number; // Ajout de category_id
+  category_id: number;
   image: string | null;
 }
 
@@ -21,6 +21,7 @@ interface Category {
 
 // Récupérer l'ID de l'animal depuis l'URL
 const route = useRoute();
+const router = useRouter(); // Utilisé pour rediriger après la suppression
 const animalId = route.params.id;
 
 // Variables réactives pour stocker l'animal et la catégorie
@@ -59,7 +60,7 @@ const fetchCategoryById = async (categoryId: number) => {
       throw new Error("Failed to fetch category details");
     }
     const data: Category = await response.json();
-    categoryName.value = data.name; // Stocker le nom de la catégorie
+    categoryName.value = data.name;
   } catch (error) {
     console.error(
       "Erreur lors de la récupération des détails de la catégorie:",
@@ -68,9 +69,31 @@ const fetchCategoryById = async (categoryId: number) => {
   }
 };
 
+// Fonction pour supprimer l'animal (adoption)
+const adoptAnimal = async () => {
+  try {
+    const response = await fetch(
+      `http://localhost:3001/api/v1/animals/${animalId}`,
+      {
+        method: "DELETE",
+      },
+    );
+    if (response.ok) {
+      alert("Vous avez adopté cet animal avec succès!");
+      router.push("/"); // Rediriger l'utilisateur vers la page d'accueil après la suppression
+    } else {
+      throw new Error("Erreur lors de la suppression de l'animal.");
+    }
+  } catch (error) {
+    console.error("Erreur lors de l'adoption:", error);
+    alert("Échec de l'adoption de l'animal.");
+  }
+};
+
 // Charger les détails de l'animal lorsque la page est montée
 onMounted(() => {
-  fetchAnimalDetails(animalId);
+  const id = Array.isArray(animalId) ? animalId[0] : animalId; // Assure que c'est une string
+  fetchAnimalDetails(id);
 });
 </script>
 
@@ -104,15 +127,25 @@ onMounted(() => {
           </li>
           <li>
             <strong>Categorie:</strong>
-            {{ categoryName || "Not Specified" }}
+            {{ categoryName || "Non spécifiée" }}
           </li>
           <li>
             <strong>Description:</strong>
-            {{ animal.description || "Non spécifié" }}
+            {{ animal.description || "Non spécifiée" }}
           </li>
         </ul>
+
+        <!-- Bouton Adopter -->
+        <button
+          @click="adoptAnimal"
+          class="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-green-600 shadow-md"
+        >
+          Adopter cet animal
+        </button>
       </div>
     </div>
+
+    <!-- Bouton Retour -->
     <NuxtLink
       to="/"
       class="bg-amber-500 text-white px-4 py-2 mb-4 mt-6 inline-flex items-center rounded-lg hover:bg-amber-600 shadow-md"
@@ -120,6 +153,9 @@ onMounted(() => {
       ← Go Back
     </NuxtLink>
   </section>
-</template>
 
-<style scoped></style>
+  <!-- Message de chargement si l'animal n'est pas encore récupéré -->
+  <section v-else>
+    <p>Chargement des détails de l'animal...</p>
+  </section>
+</template>
