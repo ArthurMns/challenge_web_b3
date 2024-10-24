@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md my-12 mb-12 py-12">
       <h2 class="text-2xl font-bold text-gray-800 mb-4">Créer une annonce</h2>
       <form @submit.prevent="submitForm" class="space-y-4">
         <div>
@@ -9,7 +9,7 @@
             id="name"
             v-model="formData.name"
             required
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
+            class="bg-white block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
           />
         </div>
   
@@ -19,7 +19,7 @@
             id="description"
             v-model="formData.description"
             required
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
+            class="bg-white block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
             rows="4"
           ></textarea>
         </div>
@@ -30,7 +30,7 @@
             id="category"
             v-model="formData.category"
             required
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
+            class="bg-white block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
           >
             <option value="" disabled selected>Choisir une catégorie</option>
             <option value="chien">Chien</option>
@@ -47,7 +47,7 @@
             id="postalCode"
             v-model="formData.postalCode"
             required
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
+            class="bg-white block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
           />
         </div>
   
@@ -59,6 +59,7 @@
         </button>
       </form>
     </div>
+    <br>
   </template>
   
   <script setup>
@@ -81,6 +82,4 @@
     }
   }
   </script>
-  
- 
   

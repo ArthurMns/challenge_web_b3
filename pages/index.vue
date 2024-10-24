@@ -13,12 +13,16 @@
     </div>
     <Card :animals="latestAnnonces" />
   </div>
+  <Accordion />
+  <Card />
+  <Article />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import Accordion from "~/components/Accordion.vue";
 import Card from "~/components/Card.vue";
+import Article from "~/components/Article.vue";
 
 const latestAnnonces = ref<
   { id: number; name: string; description: string; created_at: string }[]

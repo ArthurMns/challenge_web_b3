@@ -29,17 +29,17 @@ const createAnimal = async (req, res) => {
 	try {
 		const newAnimal = await prisma.animals.create({
 			data: {
-                name,
-                user: {
-                    connect: { id: user_id },
-                },
-                category: {
-                    connect: { id: category_id },
-                },
-                age,
-                description,
-                breed,
-                price,
+				name,
+				user: {
+					connect: { id: user_id }, // Lien avec l'utilisateur existant via son ID
+				},
+				category: {
+					connect: { id: category_id }, // Lien avec l'utilisateur existant via son ID
+				},
+				age,
+				description,
+				breed,
+				price,
 			},
 		});
 		res.json(newAnimal);

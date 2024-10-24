@@ -8,10 +8,7 @@ const hashPassword = async (password) => {
 
 const getAllUsers = async (req, res) => {
 	try {
-		console.log("GET /api/v1/users");
 		const users = await prisma.users.findMany();
-		console.log(users);
-
 		res.json(users);
 	} catch (error) {
 		res.status(500).json({ error: error.message });
@@ -24,6 +21,20 @@ const getUserById = async (req, res) => {
 		const user = await prisma.users.findUnique({
 			where: {
 				id: parseInt(id),
+			},
+		});
+		res.json(user);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
+const getUserByEmail = async (req, res) => {
+	const { email } = req.params;
+	try {
+		const user = await prisma.users.findUnique({
+			where: {
+				email,
 			},
 		});
 		res.json(user);
@@ -89,10 +100,35 @@ const deleteUser = async (req, res) => {
 	}
 };
 
+const checkUser = async (req, res) => {
+	const { email, password } = req.body;
+	try {
+		const user = await prisma.users.findUnique({
+			where: {
+				email,
+			},
+		});
+
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+		const isPasswordValid = await bcrypt.compare(password, user.password);
+		if (!isPasswordValid) {
+			return res.status(400).json({ error: "Invalid password" });
+		}
+		console.log(user);
+		res.json(user);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
 module.exports = {
 	getAllUsers,
 	getUserById,
 	createUser,
 	updateUser,
 	deleteUser,
+	checkUser,
+	getUserByEmail,
 };
