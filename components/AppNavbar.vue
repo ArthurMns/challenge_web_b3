@@ -18,14 +18,6 @@
         </nuxt-link>
       </div>
 
-      <!-- Bouton du menu hamburger -->
-      <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-gray-900 focus:outline-none">
-        <span class="sr-only">Menu</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-        </svg>
-      </button>
-
       <div class="hidden lg:flex lg:flex-1 lg:justify-end flex space-x-6">
         <nuxt-link
           to="/"
@@ -58,6 +50,14 @@
         </nuxt-link>
       </div>
 
+      <!-- Bouton du menu hamburger -->
+      <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-gray-900 focus:outline-none">
+        <span class="sr-only">Menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+
       <!-- Menu mobile -->
       <div v-if="mobileMenuOpen" class="lg:hidden absolute top-16 right-0 w-full bg-white border-b shadow-md">
         <div class="flex flex-col space-y-2 p-4">
@@ -83,9 +83,12 @@
 import { ref } from "vue";
 
 export default {
-  data() {
+  setup() {
+    const mobileMenuOpen = ref(false); // Utilisez ref pour le menu mobile
+
     return {
-      isAuthenticated: false  // Variable pour l'état d'authentification
+      mobileMenuOpen,
+      isAuthenticated: false, // Variable pour l'état d'authentification
     };
   },
   mounted() {

@@ -116,7 +116,6 @@ const checkUser = async (req, res) => {
 		if (!isPasswordValid) {
 			return res.status(400).json({ error: "Invalid password" });
 		}
-		console.log(user);
 		res.json(user);
 	} catch (error) {
 		res.status(500).json({ error: error.message });

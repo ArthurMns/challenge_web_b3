@@ -13,8 +13,6 @@
     </div>
     <Card :animals="latestAnnonces" />
   </div>
-  <Accordion />
-  <Card />
   <Article />
 </template>
 
