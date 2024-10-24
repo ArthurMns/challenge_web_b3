@@ -70,7 +70,11 @@
           <nuxt-link to="/createAnnonce" class="text-sm font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white">
             Créer mon annonce
           </nuxt-link>
-          <nuxt-link to="/login" class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
+          <nuxt-link v-if="isAuthenticated" to="/profil" class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
+            Profil
+          </nuxt-link>
+
+          <nuxt-link v-else to="/login" class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
             Log in
           </nuxt-link>
         </div>
