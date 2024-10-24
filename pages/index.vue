@@ -2,9 +2,6 @@
   <div>
     <Accordion />
     <div class="bg-orange-100 pb-6">
-      <h2 class="text-center text-2xl text-orange-700 font-bold mt-6 pt-5">
-        Nos Nouveaux Arrivants
-      </h2>
       <NuxtLink
         to="/annonces"
         class="absolute right-0 text-orange-700 font-bold"
