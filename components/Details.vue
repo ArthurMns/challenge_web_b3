@@ -9,18 +9,25 @@ interface Animal {
   description: string;
   age: number | null;
   breed: string | null;
-  category: { name: string };
+  category_id: number; // Ajout de category_id
   image: string | null;
+}
+
+// Interface pour la catégorie
+interface Category {
+  id: number;
+  name: string;
 }
 
 // Récupérer l'ID de l'animal depuis l'URL
 const route = useRoute();
 const animalId = route.params.id;
 
-// Créer une variable réactive pour stocker les détails de l'animal
+// Variables réactives pour stocker l'animal et la catégorie
 const animal = ref<Animal | null>(null);
+const categoryName = ref<string | null>(null);
 
-// Fonction pour récupérer les données de l'animal
+// Fonction pour récupérer les détails de l'animal
 const fetchAnimalDetails = async (id: string) => {
   try {
     const response = await fetch(`http://localhost:3001/api/v1/animals/${id}`);
@@ -28,10 +35,34 @@ const fetchAnimalDetails = async (id: string) => {
       throw new Error("Failed to fetch animal details");
     }
     const data = await response.json();
-    animal.value = data; // Assignation des données de l'animal
+    animal.value = data;
+
+    // Après avoir récupéré l'animal, appeler l'API pour récupérer la catégorie
+    if (animal.value && animal.value.category_id) {
+      await fetchCategoryById(animal.value.category_id);
+    }
   } catch (error) {
     console.error(
       "Erreur lors de la récupération des détails de l'animal:",
+      error,
+    );
+  }
+};
+
+// Fonction pour récupérer les données de la catégorie
+const fetchCategoryById = async (categoryId: number) => {
+  try {
+    const response = await fetch(
+      `http://localhost:3001/api/v1/categories/${categoryId}`,
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch category details");
+    }
+    const data: Category = await response.json();
+    categoryName.value = data.name; // Stocker le nom de la catégorie
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des détails de la catégorie:",
       error,
     );
   }
@@ -66,22 +97,18 @@ onMounted(() => {
         <h1 class="text-4xl font-bold mb-4">{{ animal.name }}</h1>
         <p class="text-sm mb-4 text-amber-400">ANIMAL ID: {{ animal.id }}</p>
         <ul class="text-lg leading-relaxed space-y-3">
-          <li><strong>Breed:</strong> {{ animal.breed || "Unknown" }}</li>
+          <li><strong>Race:</strong> {{ animal.breed || "Inconnu" }}</li>
           <li>
             <strong>Age:</strong>
-            {{ animal.age ? animal.age + " years" : "Unknown" }}
+            {{ animal.age ? animal.age + " years" : "Inconnu" }}
           </li>
           <li>
-            <strong>Category:</strong>
-            {{ animal.category?.name || "Not Specified" }}
-          </li>
-          <li><strong>Gender:</strong> {{ animal.gender || "Unknown" }}</li>
-          <li>
-            <strong>Microchip No:</strong>
-            {{ animal.microchip || "Not Available" }}
+            <strong>Categorie:</strong>
+            {{ categoryName || "Not Specified" }}
           </li>
           <li>
-            <strong>Location:</strong> {{ animal.location || "Not Specified" }}
+            <strong>Description:</strong>
+            {{ animal.description || "Non spécifié" }}
           </li>
         </ul>
       </div>
