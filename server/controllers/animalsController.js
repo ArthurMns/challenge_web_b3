@@ -39,6 +39,7 @@ const createAnimal = async (req, res) => {
 				age,
 				description,
 				price,
+				breed,
 			},
 		});
 		res.json(newAnimal);

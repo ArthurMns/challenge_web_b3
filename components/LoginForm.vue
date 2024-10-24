@@ -97,15 +97,6 @@ export default {
         this.error = error.message;
       }
     },
-    handleLogout() {
-      // Déconnecter l'utilisateur
-      sessionStorage.removeItem('isAuthenticated'); // Supprimer l'état d'authentification
-      this.$router.push('/login'); // Rediriger vers la page de connexion
-    }
   }
 };
 </script>
-
-<style scoped>
-/* Ajoutez ici vos styles spécifiques à ce composant */
-</style>

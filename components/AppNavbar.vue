@@ -101,6 +101,7 @@ export default {
     // Fonction de déconnexion
     const handleLogout = () => {
       sessionStorage.removeItem('isAuthenticated');
+      sessionStorage.removeItem('user_id');
       isAuthenticated.value = false;  // Mettre à jour l'état
       window.location.href = '/login';  // Rediriger vers la page de login
     };

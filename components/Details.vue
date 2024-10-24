@@ -94,6 +94,10 @@ const fetchUserById = async (id: number) => {
 
 // Fonction pour supprimer l'animal (adoption)
 const adoptAnimal = async () => {
+  if (sessionStorage.getItem("isAuthenticated") !== "true") {
+    alert("Vous devez vous connecter pour adopter un animal.");
+    return;
+  }
   try {
     const response = await fetch(
       `http://localhost:3001/api/v1/animals/${animalId}`,
@@ -144,6 +148,10 @@ onMounted(() => {
             {{ categoryName || "Non spécifiée" }}
           </li>
           <li>
+            <strong>Race:</strong>
+            {{ animal.breed || "Non spécifiée" }}
+          </li>
+          <li>
             <strong>Description:</strong>
             {{ animal.description || "Non spécifiée" }}
           </li>
@@ -153,8 +161,11 @@ onMounted(() => {
           </li>
         </ul>
 
-        <p class="text-sm mb-4 text-amber-400 py-10">Contactez {{ user.firstName }} {{ user.lastName }} : {{ user.email
-          }}</p>
+        <p class="text-sm mb-4 text-amber-400 py-10">
+          Contactez {{ user.firstName }} {{ user.lastName }} <br> <br> Email: {{ user.email }} <br> <span
+            v-if="user.phone_number">Téléphone: {{ user.phone_number }}</span>
+        </p>
+
 
         <!-- Bouton Adopter -->
         <button @click="adoptAnimal"
@@ -166,7 +177,7 @@ onMounted(() => {
 
     <!-- Bouton Retour -->
     <NuxtLink to="/"
-      class="bg-amber-500 text-white px-4 py-2 mb-4 mt-6 inline-flex items-center rounded-lg hover:bg-amber-600 shadow-md">
+      class="bg-amber-500 text-white px-4 py-2 mb-4 mt-6 mx-5 inline-flex items-center rounded-lg hover:bg-amber-600 shadow-md">
       ← Go Back
     </NuxtLink>
   </section>

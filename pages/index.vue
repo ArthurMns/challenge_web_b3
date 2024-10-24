@@ -1,12 +1,9 @@
 <template>
   <div>
     <Accordion />
-    <div class="bg-orange-100 pb-6">
-      <NuxtLink
-        to="/annonces"
-        class="absolute right-0 text-orange-700 font-bold"
-        >Rencontrer les -></NuxtLink
-      >
+    <div class="bg-orange-100 pb-10">
+      <NuxtLink to="/annonces" class="absolute right-0 text-orange-700 font-bold p-2 bg-orange-200 rounded-lg m-2
+      ">Rencontrer les -></NuxtLink>
     </div>
     <Card :animals="latestAnnonces" />
   </div>

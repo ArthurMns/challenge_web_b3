@@ -47,6 +47,7 @@ export default {
         console.error('Error fetching animals:', error);
       }
     },
+
     async fetchCategories() {
       try {
         const response = await fetch('http://localhost:3001/api/v1/categories');
@@ -56,6 +57,7 @@ export default {
         console.error('Error fetching categories:', error);
       }
     },
+
     async filterAnimals() {
       console.log("Catégorie sélectionnée:", this.selectedCategory);
 

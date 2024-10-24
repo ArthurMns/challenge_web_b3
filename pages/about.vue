@@ -20,7 +20,7 @@
         Qui Sommes-Nous ?
       </h2>
       <p class="text-gray-600">
-        Fondé en [année de création], <strong>Amis à poils</strong> est une
+        Fondé en 2024, <strong>Amis à poils</strong> est une
         plateforme pensée pour ceux qui cherchent à adopter, acheter ou vendre
         des animaux de manière responsable. Nous croyons que chaque animal
         mérite un foyer aimant, et c’est pourquoi nous avons créé cet espace

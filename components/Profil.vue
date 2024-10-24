@@ -1,12 +1,13 @@
 <template>
   <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6 text-center text-orange-600">
+    <h1 class="text-3xl font-bold mb-20 text-center text-orange-600">
       Mon Profil
     </h1>
 
     <div class="bg-white p-6 rounded-lg shadow-lg">
       <h2 class="text-2xl font-semibold mb-4">Informations personnelles</h2>
       <div class="space-y-4">
+        <!-- Informations utilisateur -->
         <div class="flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600 mr-2" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
@@ -28,15 +29,30 @@
           </svg>
           <p class="text-lg"><strong>Email :</strong> {{ user.email }}</p>
         </div>
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600 mr-2" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 10-8 0v4M3 21h18" />
+          </svg>
+          <p class="text-lg"><strong>Téléphone :</strong> {{ user.phone_number }}</p>
+        </div>
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600 mr-2" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 10-8 0v4M3 21h18" />
+          </svg>
+          <p class="text-lg"><strong>Ville :</strong> {{ user.city }}</p>
+        </div>
       </div>
     </div>
 
     <nuxt-link to="/createAnnonce"
-      class="mt-6 block text-center text-sm font-semibold leading-6 bg-orange-600 text-white px-4 py-2 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
+      class="mt-6 block w-auto max-w-xs mx-auto text-center text-sm font-semibold leading-6 bg-orange-600 text-white px-4 py-2 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
       Publier une annonce
     </nuxt-link>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
@@ -45,6 +61,8 @@ const user = ref({
   firstName: "",
   lastName: "",
   email: "",
+  phone_number: "",
+  city: "",
 });
 
 // Fonction pour récupérer les données de l'utilisateur
