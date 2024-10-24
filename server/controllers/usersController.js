@@ -45,7 +45,7 @@ const getUserByEmail = async (req, res) => {
 
 const createUser = async (req, res) => {
 	const { firstName, lastName, email, phone_number, city } = req.body;
-	let { password } = req.body;
+	let {password} = req.body;
 	try {
 		password = await hashPassword(password);
 		const newUser = await prisma.users.create({
@@ -116,7 +116,6 @@ const checkUser = async (req, res) => {
 		if (!isPasswordValid) {
 			return res.status(400).json({ error: "Invalid password" });
 		}
-		console.log(user);
 		res.json(user);
 	} catch (error) {
 		res.status(500).json({ error: error.message });

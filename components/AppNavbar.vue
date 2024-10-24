@@ -46,13 +46,48 @@
           Log in
         </nuxt-link>
       </div>
+
+      <!-- Bouton du menu hamburger -->
+      <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-gray-900 focus:outline-none">
+        <span class="sr-only">Menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+
+      <!-- Menu mobile -->
+      <div v-if="mobileMenuOpen" class="lg:hidden absolute top-16 right-0 w-full bg-white border-b shadow-md">
+        <div class="flex flex-col space-y-2 p-4">
+          <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
+            Accueil
+          </nuxt-link>
+          <nuxt-link to="/annonces" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
+            Annonces
+          </nuxt-link>
+          <nuxt-link to="/createAnnonce"
+            class="text-sm font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white">
+            Créer mon annonce
+          </nuxt-link>
+          <nuxt-link v-if="isAuthenticated" to="/profil"
+            class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
+            Profil
+          </nuxt-link>
+
+          <nuxt-link v-else to="/login"
+            class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
+            Log in
+          </nuxt-link>
+        </div>
+      </div>
     </nav>
   </header>
 </template>
 
 <script>
 export default {
-  data() {
+  setup() {
+    const mobileMenuOpen = ref(false); // Utilisez ref pour le menu mobile
+
     return {
       isAuthenticated: false,  // Variable pour l'état d'authentification
       showMenu: false  // Variable pour gérer l'affichage du menu déroulant
@@ -75,5 +110,7 @@ export default {
 </script>
 
 <style scoped>
-/* Ajoutez ici des styles spécifiques au menu déroulant */
+button {
+  transition: background-color 0.3s ease;
+}
 </style>
