@@ -123,5 +123,3 @@ const goToSlide = (slideNumber: number) => {
     </div>
   </div>
 </template>
-
-<style scoped></style>
