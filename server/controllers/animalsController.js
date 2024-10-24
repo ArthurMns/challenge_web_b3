@@ -24,14 +24,18 @@ const getAnimalById = async (req, res) => {
 };
 
 const createAnimal = async (req, res) => {
-	const { name, owner_id, category_id, age, description, breed, price } =
+	const { name, user_id, category_id, age, description, breed, price } =
 		req.body;
 	try {
 		const newAnimal = await prisma.animals.create({
 			data: {
 				name,
-				owner_id,
-				category_id,
+				user: {
+					connect: { id: user_id }, // Lien avec l'utilisateur existant via son ID
+				},
+				category: {
+					connect: { id: category_id }, // Lien avec l'utilisateur existant via son ID
+				},
 				age,
 				description,
 				breed,

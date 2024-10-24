@@ -17,6 +17,7 @@
       </button>
 
       <div class="hidden lg:flex lg:flex-1 lg:justify-end flex space-x-6">
+
         <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300 px-2.5 py-1">
           Accueil
         </nuxt-link>
@@ -26,10 +27,14 @@
         <nuxt-link to="/createAnnonce" class="text-sm font-semibold leading-6 text-orange-600 border-2 border-orange-600 px-2.5 py-1 rounded hover:bg-orange-600 hover:text-white hover:border-transparent transition-colors">
           Créer mon annonce
         </nuxt-link>
-        <nuxt-link
-          to="/login"
-          class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors"
-        >
+
+        <nuxt-link v-if="isAuthenticated" to="/profil"
+          class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
+          Profil
+        </nuxt-link>
+
+        <nuxt-link v-else to="/login"
+          class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
           Log in
         </nuxt-link>
       </div>
@@ -55,8 +60,27 @@
   </header>
 </template>
 
-<script setup>
+<script>
 import { ref } from "vue";
+
+export default {
+  data() {
+    return {
+      isAuthenticated: false,  // Variable qui va suivre l'état d'authentification
+    };
+  },
+  mounted() {
+    // Vérifier l'état d'authentification à partir du sessionStorage
+    const isAuthenticated = sessionStorage.getItem('isAuthenticated');
+    this.isAuthenticated = isAuthenticated === 'true'; // Si 'true', l'utilisateur est authentifié
+  },
+  methods: {
+    goToProfile() {
+      // Rediriger vers la page de profil si l'utilisateur est authentifié
+      this.$router.push('/profile');
+    }
+  }
+};
 
 const mobileMenuOpen = ref(false);
 </script>
