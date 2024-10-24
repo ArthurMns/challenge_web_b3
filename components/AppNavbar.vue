@@ -37,85 +37,74 @@
         >
           Créer mon annonce
         </nuxt-link>
-        <nuxt-link
-          to="/login"
-          class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors"
-        >
+
+        <!-- Bouton Profil -->
+        <nuxt-link v-if="isAuthenticated" to="/profil"
+          class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
+          Profil
+        </nuxt-link>
+
+        <nuxt-link v-else to="/login"
+          class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
           Log in
         </nuxt-link>
       </div>
-    </nav>
 
-    <Dialog
-      class="lg:hidden"
-      @close="mobileMenuOpen = false"
-      :open="mobileMenuOpen"
-    >
-      <div class="fixed inset-0 z-10" />
-      <DialogPanel
-        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-      >
-        <div class="flex items-center justify-between">
-          <nuxt-link to="/" class="-m-1.5 p-1.5">
-            <span class="sr-only">Amis à poils</span>
-            <img
-              class="h-8 w-auto"
-              src="../public/file.png"
-              alt="Amis à poils"
-            />
+      <!-- Bouton du menu hamburger -->
+      <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-gray-900 focus:outline-none">
+        <span class="sr-only">Menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+
+      <!-- Menu mobile -->
+      <div v-if="mobileMenuOpen" class="lg:hidden absolute top-16 right-0 w-full bg-white border-b shadow-md">
+        <div class="flex flex-col space-y-2 p-4">
+          <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
+            Accueil
           </nuxt-link>
-          <button
-            type="button"
-            class="-m-2.5 rounded-md p-2.5 text-gray-700"
-            @click="mobileMenuOpen = false"
-          >
-            <span class="sr-only">Close menu</span>
-            <XMarkIcon class="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
+          <nuxt-link to="/annonces" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
+            Annonces
+          </nuxt-link>
+          <nuxt-link to="/createAnnonce" class="text-sm font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white">
+            Créer mon annonce
+          </nuxt-link>
+          <nuxt-link v-if="isAuthenticated" to="/profil" class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
+            Profil
+          </nuxt-link>
 
-        <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-gray-500/10">
-            <div class="space-y-2 py-6">
-              <nuxt-link
-                to="/"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              >
-                Accueil
-              </nuxt-link>
-              <nuxt-link
-                to="/annonces"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              >
-                Annonces
-              </nuxt-link>
-              <nuxt-link
-                to="/createAnnonce"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              >
-                Créer mon annonce
-              </nuxt-link>
-            </div>
-
-            <div class="py-6">
-              <nuxt-link
-                to="/login"
-                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              >
-                Log in
-              </nuxt-link>
-            </div>
-          </div>
+          <nuxt-link v-else to="/login" class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
+            Log in
+          </nuxt-link>
         </div>
-      </DialogPanel>
-    </Dialog>
+      </div>
+    </nav>
   </header>
 </template>
 
-<script setup>
+<script>
 import { ref } from "vue";
-import { Dialog, DialogPanel } from "@headlessui/vue";
-import { XMarkIcon } from "@heroicons/vue/24/outline";
 
-const mobileMenuOpen = ref(false);
+export default {
+  setup() {
+    const mobileMenuOpen = ref(false); // Utilisez ref pour le menu mobile
+
+    return {
+      mobileMenuOpen,
+      isAuthenticated: false, // Variable pour l'état d'authentification
+    };
+  },
+  mounted() {
+    // Vérifier l'état d'authentification à partir du sessionStorage et convertir en booléen
+    const isAuthenticated = sessionStorage.getItem('isAuthenticated');
+    this.isAuthenticated = isAuthenticated === 'true';  // Conversion en booléen
+  }
+};
 </script>
+
+<style scoped>
+button {
+  transition: background-color 0.3s ease;
+}
+</style>

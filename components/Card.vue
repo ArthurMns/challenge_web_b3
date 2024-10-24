@@ -31,8 +31,10 @@
         <p>{{ animal.description }}</p>
         <div class="card-body text-slate-700">
           <div class="card-actions justify-end">
-            <NuxtLink :to="`/animal/${animal.id}`"
-              class="btn btn-primary bg-amber-700 hover:bg-amber-600 hover:border-amber-900 border-amber-800">
+            <NuxtLink
+              :to="`/animal/${animal.id}`"
+              class="btn btn-primary bg-amber-700 hover:bg-amber-600 hover:border-amber-900 border-amber-800"
+            >
               Adopter maintenant
             </NuxtLink>
           </div>
