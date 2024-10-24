@@ -4,12 +4,12 @@
 
 @layer base {
     input {
-        @apply bg-white pl-1;
+        @apply bg-white pl-2;
     }
     textarea {
-        @apply bg-white;
+        @apply bg-white px-2;
     }
     select {
-        @apply bg-white;
+        @apply bg-white pl-2;
     }
 }
