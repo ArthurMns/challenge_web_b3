@@ -5,11 +5,13 @@ import { ref, onMounted } from "vue";
 // Interface pour typer l'animal
 interface Animal {
   id: number;
+  user_id: number;
   name: string;
   description: string;
   age: number | null;
   breed: string | null;
   category_id: number;
+  price: number;
   image: string | null;
 }
 
@@ -27,6 +29,7 @@ const animalId = route.params.id;
 // Variables réactives pour stocker l'animal et la catégorie
 const animal = ref<Animal | null>(null);
 const categoryName = ref<string | null>(null);
+const user = ref<string | null>(null);
 
 // Fonction pour récupérer les détails de l'animal
 const fetchAnimalDetails = async (id: string) => {
@@ -41,6 +44,10 @@ const fetchAnimalDetails = async (id: string) => {
     // Après avoir récupéré l'animal, appeler l'API pour récupérer la catégorie
     if (animal.value && animal.value.category_id) {
       await fetchCategoryById(animal.value.category_id);
+    }
+
+    if (animal.value && animal.value.user_id) {
+      await fetchUserById(animal.value.user_id);
     }
   } catch (error) {
     console.error(
@@ -66,6 +73,22 @@ const fetchCategoryById = async (categoryId: number) => {
       "Erreur lors de la récupération des détails de la catégorie:",
       error,
     );
+  }
+};
+
+const fetchUserById = async (id: number) => {
+  try {
+    const response = await fetch(`http://localhost:3001/api/v1/users/${id}`);
+    if (!response.ok) {
+      throw new Error("Erreur lors de la récupération des données utilisateur");
+    }
+    const data = await response.json();
+    user.value = data; // Stocker les données de l'utilisateur récupérées
+    console.log(user.value);
+
+  } catch (error) {
+    console.error(error);
+    alert("Échec de la récupération des données de l'utilisateur");
   }
 };
 
@@ -101,26 +124,17 @@ onMounted(() => {
   <section v-if="animal" class="pt-8 mb-14 max-h-screen">
     <!-- Bouton "Go Back" repositionné au-dessus du contenu principal -->
 
-    <div
-      class="container mx-auto flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-6"
-    >
+    <div class="container mx-auto flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-6">
       <!-- Image de l'animal -->
       <div class="w-full md:w-1/3">
-        <img
-          src="/assets/photos/cat.png"
-          alt="Image de {{ animal.name }}"
-          class="w-full h-auto rounded-lg shadow-lg"
-        />
+        <img src="/assets/photos/cat.png" alt="Image de {{ animal.name }}" class="w-full h-auto rounded-lg shadow-lg" />
       </div>
 
       <!-- Détails de l'animal -->
-      <div
-        class="w-full md:w-1/2 bg-neutral-800 text-white p-6 rounded-lg shadow-lg"
-      >
+      <div class="w-full md:w-1/2 bg-neutral-800 text-white p-6 rounded-lg shadow-lg">
         <h1 class="text-4xl font-bold mb-4">{{ animal.name }}</h1>
-        <p class="text-sm mb-4 text-amber-400">ANIMAL ID: {{ animal.id }}</p>
+        <p class="text-sm mb-4 text-amber-400">ANIMAL AJOUTER PAR: {{ user.firstName }} {{ user.lastName }}</p>
         <ul class="text-lg leading-relaxed space-y-3">
-          <li><strong>Race:</strong> {{ animal.breed || "Inconnu" }}</li>
           <li>
             <strong>Age:</strong>
             {{ animal.age ? animal.age + " years" : "Inconnu" }}
@@ -133,23 +147,26 @@ onMounted(() => {
             <strong>Description:</strong>
             {{ animal.description || "Non spécifiée" }}
           </li>
+          <li>
+            <strong>Prix:</strong>
+            {{ animal.price || "Non spécifiée" }} €
+          </li>
         </ul>
 
+        <p class="text-sm mb-4 text-amber-400 py-10">Contactez {{ user.firstName }} {{ user.lastName }} : {{ user.email
+          }}</p>
+
         <!-- Bouton Adopter -->
-        <button
-          @click="adoptAnimal"
-          class="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-green-600 shadow-md"
-        >
+        <button @click="adoptAnimal"
+          class="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-green-600 shadow-md">
           Adopter cet animal
         </button>
       </div>
     </div>
 
     <!-- Bouton Retour -->
-    <NuxtLink
-      to="/"
-      class="bg-amber-500 text-white px-4 py-2 mb-4 mt-6 inline-flex items-center rounded-lg hover:bg-amber-600 shadow-md"
-    >
+    <NuxtLink to="/"
+      class="bg-amber-500 text-white px-4 py-2 mb-4 mt-6 inline-flex items-center rounded-lg hover:bg-amber-600 shadow-md">
       ← Go Back
     </NuxtLink>
   </section>

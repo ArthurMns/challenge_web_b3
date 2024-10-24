@@ -124,9 +124,7 @@ export default {
         const data = await response.json();
         console.log("Mot de passe mis à jour avec succès : ", data);
 
-        // Redirection ou autre logique après mise à jour réussie
-        // sessionStorage.setItem("isAuthenticated", "true");
-        // this.$router.push("/");
+        this.$router.push("/login");
 
       } catch (error) {
         // Gérer et afficher l'erreur

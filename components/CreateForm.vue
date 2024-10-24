@@ -66,7 +66,7 @@ export default {
     // Vérifier si l'utilisateur est déjà authentifié via sessionStorage
     const isAuthenticated = sessionStorage.getItem('isAuthenticated');
     if (isAuthenticated === 'true') {
-      this.user_id = 1; // Remplacez par l'ID réel de l'utilisateur si nécessaire
+      this.user_id = sessionStorage.getItem('user_id'); // Remplacez par l'ID réel de l'utilisateur si nécessaire
     } else {
       this.$router.push('/login'); // Rediriger si l'utilisateur n'est pas connecté
     }
@@ -87,7 +87,7 @@ export default {
             price: this.price,
             description: this.description,
             category_id: parseInt(this.category_id), // Convertir en entier
-            user_id: 1, // ID de l'utilisateur connecté
+            user_id: parseInt(this.user_id), // ID de l'utilisateur connecté
           }),
         });
 
