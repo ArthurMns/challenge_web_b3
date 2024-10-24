@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="bg-orange-100 pb-6">
+  <div class="bg-orange-100 pb-6 ">
     <h2 class="text-center text-2xl text-orange-700 font-bold mt-6 pt-5">
       Nos Nouveaux Arrivants
     </h2>
@@ -9,7 +9,7 @@
     >
   </div>
 
-  <div class="flex space-x-4 p-6 text-center justify-center bg-orange-100">
+  <div class="flex space-x-4 p-6 text-center justify-center bg-orange-100  shadow-lg">
     <div
       class="card card-compact bg-slate-100 w-96 shadow-xl ml-2 mr-2 text-slate-800"
     >

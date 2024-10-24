@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full mx-auto my-12 p-4">
-    <div class="overflow-hidden rounded-lg shadow-lg">
-      <div class="flex transition-transform duration-300" :style="slideStyle">
+    <div class="overflow-hidden rounded-lg">
+      <div class="flex transition-transform duration-300 " :style="slideStyle">
         <div
           v-for="(image, index) in images"
           :key="index"
