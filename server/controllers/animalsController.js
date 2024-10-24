@@ -100,6 +100,20 @@ const fourLast = async (req, res) => {
 	res.json(animals);
 };
 
+const getAnimalsByCategory = async (req, res) => {
+	const categoryId = parseInt(req.params.categoryId);
+	try {
+		const animals = await prisma.animals.findMany({
+			where: {
+				category_id: categoryId,
+			},
+		});
+		res.json(animals);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
 module.exports = {
 	getAllAnimals,
 	getAnimalById,
@@ -107,4 +121,5 @@ module.exports = {
 	updateAnimal,
 	deleteAnimal,
 	fourLast,
+	getAnimalsByCategory,
 };

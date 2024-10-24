@@ -10,5 +10,6 @@ router.post("/", animalsController.createAnimal);
 router.put("/:id", animalsController.updateAnimal);
 router.delete("/:id", animalsController.deleteAnimal);
 router.get("/fourLast", animalsController.fourLast);
+router.get('/categories/:categoryId', animalsController.getAnimalsByCategory);
 
 module.exports = router;
