@@ -4,11 +4,9 @@
       Nos Nouveaux Arrivants
     </h2>
     <div class="flex justify-center mt-4">
-      <select 
-        class="select select-bordered w-full max-w-xs bg-orange-200 text-slate-800 ml-4"
-        v-model="selectedCategory" 
-        @change="filterAnimals">
-        <option disabled value="">Sélectionnez une catégorie</option>
+      <select class="select select-bordered w-full max-w-xs bg-orange-200 text-slate-800 ml-4"
+        v-model="selectedCategory" @change="filterAnimals">
+        <option value="">Toutes les catégories</option>
         <option v-for="category in categories" :key="category.id" :value="category.id">
           {{ category.name }}
         </option>
@@ -60,12 +58,16 @@ export default {
     },
     async filterAnimals() {
       console.log("Catégorie sélectionnée:", this.selectedCategory);
-      
+
       if (this.selectedCategory) {
-        const response = await fetch(`http://localhost:3001/api/v1/animals/categories/${this.selectedCategory}`);
-        const data = await response.json();
-        this.filteredAnnonces = data;
-        console.log("Annonces filtrées:", this.filteredAnnonces);
+        try {
+          const response = await fetch(`http://localhost:3001/api/v1/animals/categories/${this.selectedCategory}`);
+          const data = await response.json();
+          this.filteredAnnonces = data;
+          console.log("Annonces filtrées:", this.filteredAnnonces);
+        } catch (error) {
+          console.error('Error fetching filtered animals:', error);
+        }
       } else {
         this.filteredAnnonces = this.annonces;
       }

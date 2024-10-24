@@ -2,9 +2,6 @@
 
 <template>
   <div class="bg-orange-100 pb-6">
-    <h2 class="text-center text-2xl text-orange-700 font-bold mt-6 pt-5">
-      Nos Nouveaux Arrivants
-    </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6 text-center">
       <div v-for="animal in animals" :key="animal.id"
         class="card card-compact bg-slate-100 w-96 shadow-xl ml-2 mr-2 text-slate-800">
