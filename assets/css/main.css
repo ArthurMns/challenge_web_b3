@@ -4,7 +4,7 @@
 
 @layer base {
     input {
-        @apply bg-white;
+        @apply bg-white pl-1;
     }
     textarea {
         @apply bg-white;
