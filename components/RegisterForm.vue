@@ -137,6 +137,7 @@ export default {
         }
 
         sessionStorage.setItem('isAuthenticated', 'true');
+        sessionStorage.setItem('user_id', JSON.stringify(data[0].id));
         this.$router.push('/');
 
       } catch (error) {
