@@ -5,12 +5,22 @@
     <h2 class="text-center text-2xl text-orange-700 font-bold mt-6 pt-5">
       Nos Nouveaux Arrivants
     </h2>
-    <NuxtLink to="/PetList" class="absolute right-0 text-orange-700 font-bold"
-      >Rencontrer les -></NuxtLink
-    >
+    <div class="flex justify-center mt-4">
+      <select 
+        class="select select-bordered w-full max-w-xs bg-orange-200 text-slate-800 ml-4"
+        v-model="selectedCategory" 
+        @change="filterAnimals">
+        <option disabled value="">Sélectionnez une catégorie</option>
+        <option v-for="category in categories" :key="category.id" :value="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
   </div>
 
-  <div class="flex space-x-4 p-6 text-center justify-center bg-orange-100">
+
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6 text-center bg-orange-100">
     <div v-for="animal in animals" :key="animal.id"
       class="card card-compact bg-slate-100 w-96 shadow-xl ml-2 mr-2 text-slate-800">
       <figure>
@@ -38,6 +48,25 @@ export default {
     animals: {
       type: Array,
       required: true
+    },
+    categories: {
+      type: Array,
+      required: true
+    }
+  },
+  data() {
+    return {
+      selectedCategory: '',
+      filteredAnimals: this.animals
+    };
+  },
+  methods: {
+    filterAnimals() {
+      if (this.selectedCategory) {
+        this.filteredAnimals = this.animals.filter(animal => animal.categoryId === this.selectedCategory);
+      } else {
+        this.filteredAnimals = this.animals;
+      }
     }
   }
 };
