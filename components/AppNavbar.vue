@@ -31,6 +31,7 @@
           class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
           Log in
         </nuxt-link>
+        <button @click="goToProfile">btofezfez</button>
       </div>
     </nav>
 
@@ -90,14 +91,16 @@ export default {
       isAuthenticated: false,  // Variable qui va suivre l'état d'authentification
     };
   },
-  computed() {
+  mounted() {
     // Vérifier l'état d'authentification à partir du sessionStorage
     const isAuthenticated = sessionStorage.getItem('isAuthenticated');
-    this.isAuthenticated = isAuthenticated === 'true'; // Si 'true', l'utilisateur est authentifié
+    this.isAuthenticated = isAuthenticated; // Si 'true', l'utilisateur est authentifié
   },
   methods: {
+
     goToProfile() {
-      // Rediriger vers la page de profil si l'utilisateur est authentifié
+      console.log(this.isAuthenticated);
+      console.log(sessionStorage.getItem('isAuthenticated'));
       this.$router.push('/profile');
     }
   }

@@ -109,7 +109,6 @@ export default {
       this.error = null;  // Reset error message
 
       try {
-        console.log(this.firstName, this.lastName, this.phone_number, this.email, this.password);
 
         if (this.password !== this.confirmPassword) {
           throw new Error('Les mots de passe ne correspondent pas');

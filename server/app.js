@@ -14,7 +14,7 @@ const PORT = 3001;
 app.use(
 	cors({
 		origin: "*", // Permettre toutes les origines, à restreindre pour des raisons de sécurité
-		methods: ["GET", "POST", "DELETE", "OPTIONS"], // Méthodes permises
+		methods: ["GET", "POST", "DELETE", "OPTIONS", "PUT"], // Méthodes permises
 		allowedHeaders: [
 			"Origin",
 			"X-Requested-With",
