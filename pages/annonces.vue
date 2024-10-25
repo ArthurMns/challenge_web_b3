@@ -59,14 +59,11 @@ export default {
     },
 
     async filterAnimals() {
-      console.log("Catégorie sélectionnée:", this.selectedCategory);
-
       if (this.selectedCategory) {
         try {
           const response = await fetch(`http://localhost:3001/api/v1/animals/categories/${this.selectedCategory}`);
           const data = await response.json();
           this.filteredAnnonces = data;
-          console.log("Annonces filtrées:", this.filteredAnnonces);
         } catch (error) {
           console.error('Error fetching filtered animals:', error);
         }

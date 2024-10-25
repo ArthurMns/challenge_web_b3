@@ -37,8 +37,6 @@ if (typeof window !== "undefined") {
   user_id.value = sessionStorage.getItem("user_id");
 }
 
-console.log("user_id", user_id);
-
 let errorMessage = ref<string | null>(null);
 
 // Fonction pour récupérer les détails de l'animal
@@ -95,7 +93,6 @@ const fetchUserById = async (id: number) => {
     }
     const data = await response.json();
     user.value = data; // Stocker les données de l'utilisateur récupérées
-    console.log(user.value);
 
   } catch (error) {
     console.error(error);

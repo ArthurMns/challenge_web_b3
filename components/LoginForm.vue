@@ -86,9 +86,6 @@ export default {
 
         const data = await response.json();
 
-        console.log(data);
-
-
         sessionStorage.setItem('isAuthenticated', 'true');
         sessionStorage.setItem('user_id', JSON.stringify(data['id']));
         this.$router.push('/');

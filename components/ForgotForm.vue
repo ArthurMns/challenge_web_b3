@@ -121,9 +121,6 @@ export default {
           throw new Error("Erreur lors de la mise à jour du mot de passe");
         }
 
-        const data = await response.json();
-        console.log("Mot de passe mis à jour avec succès : ", data);
-
         this.$router.push("/login");
 
       } catch (error) {

@@ -115,9 +115,6 @@ export default {
           throw new Error("Erreur lors de la création de l'annonce");
         }
 
-        const data = await response.json();
-        console.log(data);
-
         // Réinitialiser le formulaire après succès
         this.name = '';
         this.age = '';
