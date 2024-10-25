@@ -200,14 +200,14 @@ onMounted(() => {
 
 
         <!-- Bouton Adopter -->
-        <button @click="adoptAnimal"
+        <button v-if="user.id != user_id" @click="adoptAnimal"
           class="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-green-600 shadow-md">
           Adopter cet animal
         </button>
 
-        <button v-if="user.id == user_id" @click="deleteAnimal"
-          class="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-green-600 shadow-md ml-5">
-          Supprimer
+        <button v-else @click="deleteAnimal"
+          class="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-green-600 shadow-md">
+          Supprimer l'annonce
         </button>
 
       </div>
