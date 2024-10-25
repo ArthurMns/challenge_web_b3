@@ -69,12 +69,11 @@ export default {
     };
   },
   mounted() {
-    // Vérifier si l'utilisateur est déjà authentifié via sessionStorage
     const isAuthenticated = sessionStorage.getItem('isAuthenticated');
     if (isAuthenticated === 'true') {
-      this.user_id = sessionStorage.getItem('user_id'); // Remplacez par l'ID réel de l'utilisateur si nécessaire
+      this.user_id = sessionStorage.getItem('user_id');
     } else {
-      this.$router.push('/login'); // Rediriger si l'utilisateur n'est pas connecté
+      this.$router.push('/login');
     }
   },
   created() {
@@ -92,7 +91,7 @@ export default {
     },
 
     async submitForm() {
-      this.error = null; // Réinitialiser les messages d'erreur
+      this.error = null;
 
       try {
         const response = await fetch('http://localhost:3001/api/v1/animals', {
@@ -106,8 +105,8 @@ export default {
             price: this.price,
             description: this.description,
             breed: this.breed,
-            category_id: parseInt(this.selectedCategory), // Convertir en entier
-            user_id: parseInt(this.user_id), // ID de l'utilisateur connecté
+            category_id: parseInt(this.selectedCategory),
+            user_id: parseInt(this.user_id),
           }),
         });
 
@@ -115,7 +114,6 @@ export default {
           throw new Error("Erreur lors de la création de l'annonce");
         }
 
-        // Réinitialiser le formulaire après succès
         this.name = '';
         this.age = '';
         this.price = '';
@@ -123,7 +121,6 @@ export default {
         this.breed = '';
         this.selectedCategory = '';
 
-        // Rediriger après la création de l'annonce
         this.$router.push('/');
       } catch (error) {
         this.error = error.message;

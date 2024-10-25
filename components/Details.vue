@@ -2,7 +2,6 @@
 import { useRoute, useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 
-// Interface pour typer l'animal
 interface Animal {
   id: number;
   user_id: number;
@@ -15,31 +14,26 @@ interface Animal {
   image: string | null;
 }
 
-// Interface pour la catégorie
 interface Category {
   id: number;
   name: string;
 }
 
-// Récupérer l'ID de l'animal depuis l'URL
 const route = useRoute();
-const router = useRouter(); // Utilisé pour rediriger après la suppression
+const router = useRouter();
 const animalId = route.params.id;
 
-// Variables réactives pour stocker l'animal et la catégorie
 const animal = ref<Animal | null>(null);
 const categoryName = ref<string | null>(null);
 const user = ref<string | null>(null);
 const user_id = ref<string | null>(null);
 
-// Vérifier si `sessionStorage` est disponible pour définir `user_id`
 if (typeof window !== "undefined") {
   user_id.value = sessionStorage.getItem("user_id");
 }
 
 let errorMessage = ref<string | null>(null);
 
-// Fonction pour récupérer les détails de l'animal
 const fetchAnimalDetails = async (id: string) => {
   try {
     const response = await fetch(`http://localhost:3001/api/v1/animals/${id}`);
@@ -49,7 +43,6 @@ const fetchAnimalDetails = async (id: string) => {
     const data = await response.json();
     animal.value = data;
 
-    // Après avoir récupéré l'animal, appeler l'API pour récupérer la catégorie
     if (animal.value && animal.value.category_id) {
       await fetchCategoryById(animal.value.category_id);
     }
@@ -66,7 +59,6 @@ const fetchAnimalDetails = async (id: string) => {
   }
 };
 
-// Fonction pour récupérer les données de la catégorie
 const fetchCategoryById = async (categoryId: number) => {
   try {
     const response = await fetch(
@@ -92,7 +84,7 @@ const fetchUserById = async (id: number) => {
       throw new Error("Erreur lors de la récupération des données utilisateur");
     }
     const data = await response.json();
-    user.value = data; // Stocker les données de l'utilisateur récupérées
+    user.value = data;
 
   } catch (error) {
     console.error(error);
@@ -100,7 +92,6 @@ const fetchUserById = async (id: number) => {
   }
 };
 
-// Fonction pour supprimer l'animal (adoption)
 const adoptAnimal = async () => {
   if (typeof window !== "undefined" && sessionStorage.getItem("isAuthenticated") !== "true") {
     alert("Vous devez vous connecter pour adopter un animal.");
@@ -115,7 +106,7 @@ const adoptAnimal = async () => {
     );
     if (response.ok) {
       alert("Vous avez adopté cet animal avec succès!");
-      router.push("/"); // Rediriger l'utilisateur vers la page d'accueil après la suppression
+      router.push("/");
     } else {
       throw new Error("Erreur lors de la suppression de l'animal.");
     }
@@ -135,7 +126,7 @@ const deleteAnimal = async () => {
     );
     if (response.ok) {
       alert("Vous avez supprimé cet animal avec succès!");
-      router.push("/"); // Rediriger l'utilisateur vers la page d'accueil après la suppression
+      router.push("/");
     } else {
       throw new Error("Erreur lors de la suppression de l'animal.");
     }
@@ -145,9 +136,8 @@ const deleteAnimal = async () => {
   }
 };
 
-// Charger les détails de l'animal lorsque la page est montée
 onMounted(() => {
-  const id = Array.isArray(animalId) ? animalId[0] : animalId; // Assure que c'est une string
+  const id = Array.isArray(animalId) ? animalId[0] : animalId;
   fetchAnimalDetails(id);
 });
 </script>

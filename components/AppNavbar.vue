@@ -53,26 +53,24 @@
 
 
 <script>
-import { ref, onMounted } from 'vue';  // Importer ref et onMounted pour la gestion des états réactifs
+import { ref, onMounted } from 'vue';
 
 export default {
   setup() {
-    const mobileMenuOpen = ref(false);  // Utilisez ref pour le menu mobile
-    const isAuthenticated = ref(false);  // Utilisez ref pour l'état d'authentification
-    const showMenu = ref(false);  // Utilisez ref pour l'affichage du menu déroulant
+    const mobileMenuOpen = ref(false);
+    const isAuthenticated = ref(false);
+    const showMenu = ref(false);
 
-    // Vérifier l'état d'authentification à partir du sessionStorage
     onMounted(() => {
       const authStatus = sessionStorage.getItem('isAuthenticated');
-      isAuthenticated.value = authStatus === 'true';  // Conversion en booléen
+      isAuthenticated.value = authStatus === 'true';
     });
 
-    // Fonction de déconnexion
     const handleLogout = () => {
       sessionStorage.removeItem('isAuthenticated');
       sessionStorage.removeItem('user_id');
-      isAuthenticated.value = false;  // Mettre à jour l'état
-      window.location.href = '/login';  // Rediriger vers la page de login
+      isAuthenticated.value = false;
+      window.location.href = '/login';
     };
 
     return {
@@ -92,6 +90,5 @@ button {
 
 .custom-dropdown-position {
   left: -40px;
-  /* Ajustez cette valeur pour décaler le menu vers la gauche */
 }
 </style>

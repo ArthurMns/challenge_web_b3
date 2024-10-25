@@ -31,10 +31,10 @@ const createAnimal = async (req, res) => {
 			data: {
 				name,
 				user: {
-					connect: { id: user_id }, // Lien avec l'utilisateur existant via son ID
+					connect: { id: user_id },
 				},
 				category: {
-					connect: { id: category_id }, // Lien avec l'utilisateur existant via son ID
+					connect: { id: category_id },
 				},
 				age,
 				description,
@@ -88,13 +88,13 @@ const deleteAnimal = async (req, res) => {
 };
 
 const fourLast = async (req, res) => {
-	const limit = parseInt(req.query.limit) || 10; // Défaut à 10 si non fourni
-	const order = req.query.order === "desc" ? "desc" : "asc"; // Par défaut ascendant
+	const limit = parseInt(req.query.limit) || 10;
+	const order = req.query.order === "desc" ? "desc" : "asc";
 
 	const animals = await prisma.animals.findMany({
 		take: limit,
 		orderBy: {
-			created_at: order, // Trie par la date de création
+			created_at: order,
 		},
 	});
 

@@ -57,16 +57,14 @@ export default {
     };
   },
   mounted() {
-    // Vérifier si l'utilisateur est déjà authentifié via sessionStorage
     const isAuthenticated = sessionStorage.getItem('isAuthenticated');
     if (isAuthenticated === 'true') {
-      // Si l'utilisateur est authentifié, rediriger vers la page d'accueil ou une autre page
       this.$router.push('/');
     }
   },
   methods: {
     async handleLogin() {
-      this.error = null;  // Reset error message
+      this.error = null;
 
       try {
         const response = await fetch('http://localhost:3001/api/v1/users/login', {

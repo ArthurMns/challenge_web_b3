@@ -96,10 +96,8 @@ export default {
     };
   },
   mounted() {
-    // Vérifier si l'utilisateur est déjà authentifié via sessionStorage
     const isAuthenticated = sessionStorage.getItem('isAuthenticated');
     if (isAuthenticated === 'true') {
-      // Si l'utilisateur est authentifié, rediriger vers la page d'accueil ou une autre page
       this.$router.push('/');
     }
   },
@@ -144,7 +142,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-/* Ajoutez ici vos styles spécifiques à ce composant */
-</style>
