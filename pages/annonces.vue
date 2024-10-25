@@ -42,7 +42,7 @@ export default {
         const response = await fetch('http://localhost:3001/api/v1/animals');
         const data = await response.json();
         this.annonces = data;
-        this.filteredAnnonces = data; // Initialisez le tableau filtré
+        this.filteredAnnonces = data;
       } catch (error) {
         console.error('Error fetching animals:', error);
       }
