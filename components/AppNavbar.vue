@@ -28,8 +28,9 @@
             Profil
           </nuxt-link>
 
-          <!-- Menu déroulant pour Profil et Déconnexion -->
-          <div v-if="showMenu" class="absolute bg-white shadow-lg rounded-md mt-2 w-32 p-4 z-10">
+          <!-- Menu déroulant pour Profil et Déconnexion avec une classe personnalisée -->
+          <div v-if="showMenu"
+            class="absolute custom-dropdown-position bg-white shadow-lg rounded-md mt-2 w-32 p-3 z-10">
             <nuxt-link to="/profil" class="block text-sm px-4 py-2 text-gray-700 hover:bg-gray-100">
               Mon Profil
             </nuxt-link>
@@ -40,48 +41,16 @@
           </div>
         </div>
 
-        <!-- Sinon, bouton Log in -->
+        <!-- Sinon, bouton Connexion -->
         <nuxt-link v-else to="/login"
           class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
-          Log in
+          Connexion
         </nuxt-link>
-      </div>
-
-      <!-- Bouton du menu hamburger -->
-      <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-gray-900 focus:outline-none">
-        <span class="sr-only">Menu</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-        </svg>
-      </button>
-
-      <!-- Menu mobile -->
-      <div v-if="mobileMenuOpen" class="lg:hidden absolute top-16 right-0 w-full bg-white border-b shadow-md">
-        <div class="flex flex-col space-y-2 p-4">
-          <nuxt-link to="/" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
-            Accueil
-          </nuxt-link>
-          <nuxt-link to="/annonces" class="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-300">
-            Annonces
-          </nuxt-link>
-          <nuxt-link to="/createAnnonce"
-            class="text-sm font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white">
-            Créer mon annonce
-          </nuxt-link>
-          <nuxt-link v-if="isAuthenticated" to="/profil"
-            class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
-            Profil
-          </nuxt-link>
-
-          <nuxt-link v-else to="/login"
-            class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
-            Log in
-          </nuxt-link>
-        </div>
       </div>
     </nav>
   </header>
 </template>
+
 
 <script>
 import { ref, onMounted } from 'vue';  // Importer ref et onMounted pour la gestion des états réactifs
@@ -119,5 +88,10 @@ export default {
 <style scoped>
 button {
   transition: background-color 0.3s ease;
+}
+
+.custom-dropdown-position {
+  left: -40px;
+  /* Ajustez cette valeur pour décaler le menu vers la gauche */
 }
 </style>

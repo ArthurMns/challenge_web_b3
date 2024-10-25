@@ -30,6 +30,16 @@ const animalId = route.params.id;
 const animal = ref<Animal | null>(null);
 const categoryName = ref<string | null>(null);
 const user = ref<string | null>(null);
+const user_id = ref<string | null>(null);
+
+// Vérifier si `sessionStorage` est disponible pour définir `user_id`
+if (typeof window !== "undefined") {
+  user_id.value = sessionStorage.getItem("user_id");
+}
+
+console.log("user_id", user_id);
+
+let errorMessage = ref<string | null>(null);
 
 // Fonction pour récupérer les détails de l'animal
 const fetchAnimalDetails = async (id: string) => {
@@ -54,6 +64,7 @@ const fetchAnimalDetails = async (id: string) => {
       "Erreur lors de la récupération des détails de l'animal:",
       error,
     );
+    errorMessage = error;
   }
 };
 
@@ -94,7 +105,7 @@ const fetchUserById = async (id: number) => {
 
 // Fonction pour supprimer l'animal (adoption)
 const adoptAnimal = async () => {
-  if (sessionStorage.getItem("isAuthenticated") !== "true") {
+  if (typeof window !== "undefined" && sessionStorage.getItem("isAuthenticated") !== "true") {
     alert("Vous devez vous connecter pour adopter un animal.");
     return;
   }
@@ -117,12 +128,33 @@ const adoptAnimal = async () => {
   }
 };
 
+const deleteAnimal = async () => {
+  try {
+    const response = await fetch(
+      `http://localhost:3001/api/v1/animals/${animalId}`,
+      {
+        method: "DELETE",
+      },
+    );
+    if (response.ok) {
+      alert("Vous avez supprimé cet animal avec succès!");
+      router.push("/"); // Rediriger l'utilisateur vers la page d'accueil après la suppression
+    } else {
+      throw new Error("Erreur lors de la suppression de l'animal.");
+    }
+  } catch (error) {
+    console.error("Erreur lors de la suppression:", error);
+    alert("Échec de la suppression de l'animal.");
+  }
+};
+
 // Charger les détails de l'animal lorsque la page est montée
 onMounted(() => {
   const id = Array.isArray(animalId) ? animalId[0] : animalId; // Assure que c'est une string
   fetchAnimalDetails(id);
 });
 </script>
+
 
 <template>
   <section v-if="animal" class="pt-8 mb-14 max-h-screen">
@@ -172,6 +204,12 @@ onMounted(() => {
           class="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-green-600 shadow-md">
           Adopter cet animal
         </button>
+
+        <button v-if="user.id == user_id" @click="deleteAnimal"
+          class="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-green-600 shadow-md ml-5">
+          Supprimer
+        </button>
+
       </div>
     </div>
 
