@@ -1,8 +1,23 @@
+version: '3'
+
 services:
-  backend:
+  frontend:
     build:
-        context: .
-        dockerfile: ./dockerfile
+      context: .
+      dockerfile: dockerfile.frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+  backend:
+    volumes:
+      - ./serveur:/app
+    build:
+      context: .
+      dockerfile: dockerfile.backend
     ports:
       - "3001:3001"
     env_file:
@@ -20,9 +35,8 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=m3g80
+      - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=challenge_web
-
 
 volumes:
   db-data:

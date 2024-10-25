@@ -1,0 +1,24 @@
+FROM node:18
+
+# Installer netcat pour le script de vérification et nettoyer les listes de paquets
+RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# Générer le client Prisma
+RUN npx prisma generate --schema=./prisma/schema.prisma
+
+EXPOSE 3001
+
+CMD ["sh", "-c", "\
+while ! nc -z postgres 5432; do \
+  echo 'Waiting for database connection...'; \
+  sleep 1; \
+done && \
+npx prisma migrate deploy --schema=./prisma/schema.prisma && \
+node serveur/app.js"]
