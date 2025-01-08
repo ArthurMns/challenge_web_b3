@@ -74,7 +74,7 @@
             Profil
           </nuxt-link>
 
-          <nuxt-link v-else to="/login" class="text-sm font-semibold leading-6 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600">
+          <nuxt-link v-else to="/login" class="text-sm font-semibold leading-6 bg-orange-600 text-white px-2.5 py-1 rounded hover:bg-white hover:text-orange-600 border-2 border-transparent hover:border-orange-600 transition-colors">
             Log in
           </nuxt-link>
         </div>
@@ -96,9 +96,8 @@ export default {
     };
   },
   mounted() {
-    // Vérifier l'état d'authentification à partir du sessionStorage et convertir en booléen
     const isAuthenticated = sessionStorage.getItem('isAuthenticated');
-    this.isAuthenticated = isAuthenticated === 'true';  // Conversion en booléen
+    this.isAuthenticated = isAuthenticated === 'true';  
   }
 };
 </script>
